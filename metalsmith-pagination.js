@@ -28,6 +28,10 @@ module.exports = function (options) {
     var complete = keys.every(function (name) {
       var collName = name.replace(/collections\./, ''),
           collection = metadata.collections[collName];
+          
+      // If a metalsmith collection does not exist in the passed in
+      // collecttion pagination definitions, skip over it
+      if (!collection) return true;
 
       var pageOptions = extend(DEFAULTS, options[name])
       var toShow = collection
